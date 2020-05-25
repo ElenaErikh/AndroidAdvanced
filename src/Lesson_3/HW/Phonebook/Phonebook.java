@@ -4,9 +4,7 @@ import java.util.*;
 
 public class Phonebook{
     HashMap<String, Set<String>> phonebook;
-
-    private String surname;
-    private String phoneNumber;
+    Set<String> nums;
 
     public Phonebook(HashMap phonebook) {
         this.phonebook = phonebook;
@@ -17,14 +15,17 @@ public class Phonebook{
     }
 
     public void add(String surname, String phoneNumber){
-        if (phonebook.get(surname) == null) {
-            Set<String> nums = new LinkedHashSet<>();
+        nums = new LinkedHashSet<>();
+
+        if (phonebook.get(surname) == null){
             nums.add(phoneNumber);
             phonebook.put(surname, nums);
         } else {
-            phonebook.get(surname).add(phoneNumber);
-            phonebook.put(surname, phonebook.get(surname));
+            nums = phonebook.get(surname);
+            nums.add(phoneNumber);
+            phonebook.put(surname, nums);
         }
+
     }
 
 }

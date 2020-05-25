@@ -24,6 +24,7 @@ public class Main {
         phonebook.add("Жданов", "89289741177");
 
         phonebook.get("Иванов");
+        phonebook.get("Петров");
         phonebook.get("Сидоров");
         phonebook.get("Тюльпанов");
 
