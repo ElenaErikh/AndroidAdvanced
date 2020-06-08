@@ -21,27 +21,27 @@ public class Client {
 
                     Thread t1 = new Thread(() -> {
                         while (true){
-                            try {
-                                String str = inSocket.nextLine();
-                                if (str.equals("/end")) {
-                                    System.out.println("Сервер отключился");
+                                String str2 = inConsole.nextLine();
+                                out.println(str2);
+                                if (str2.equals("/end")) {
+                                    System.out.println("Вы отключились");
                                     break;
                                 }
-                                System.out.println("Сервер: " + str);
-                            }catch (NoSuchElementException ex){
-                                return;
-                            }
                         }
                     });
                     t1.setDaemon(true);
                     t1.start();
 
                     while (true) {
-                        String str2 = inConsole.nextLine();
-                        out.println(str2);
-                        if (str2.equals("/end")) {
-                            System.out.println("Вы отключились");
-                            break;
+                        try {
+                            String str = inSocket.nextLine();
+                            if (str.equals("/end")) {
+                                System.out.println("Сервер отключился");
+                                break;
+                            }
+                            System.out.println("Сервер: " + str);
+                        }catch (NoSuchElementException ex){
+                            return;
                         }
                     }
                 }
